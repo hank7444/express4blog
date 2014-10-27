@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+
+    <!-- 共用的css放在這 -->
+    <% include ../partials/base/globalcss %>
+
+    <!-- 頁面獨立的css放在這-->
+    <% if (typeof(css) !== "undefined" && typeof(css.length) !== "undefined") { %>
+      <%-partial('../partials/base/partialcss', css) %>
+    <% } %>
+
+  </head>
+  <body>
+		<% include ../partials/header %>
+		
+    <%-body -%>
+
+
+    <!-- 共用的js放在這 -->
+    <% include ../partials/base/globaljs %>
+
+    <!-- 試了好久才試出來...不然都一直給我拋error = = -->
+    <!-- 頁面獨立的js放在這 -->
+    <% if (typeof(js) !== "undefined" && typeof(js.length) !== "undefined" ) { %>
+      <%-partial('../partials/base/partialjs', js) %>
+    <% } %>
+
+    <% include ../partials/footer %>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<div id="header">
+
+	<% if (session.signed) { %>
+	<span>
+		welcome! <%= session.nickname %>
+	</span>
+	<% } %>
+
+	<ul>
+		<li>
+			<a href="#">about</a>
+		</li>
+		<% if (session.signed) { %>
+
+			<li>
+				<a href="#">blog</a>
+			</li>
+			<li>
+				<a href="#">logout</a>
+			</li>
+		<% } else { %>
+			<li>
+				<a href="#">register</a>
+			</li>
+			<li>
+				<a href="users/signin">signin</a>
+			</li>
+		<% } %>
+
+	</ul>
+</div>

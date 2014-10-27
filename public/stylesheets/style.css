@@ -1,0 +1,128 @@
+body {
+    font: 14px"蘋果儷中黑", "微軟正黑體", Verdana, Helvetica, Arial, sans-serif, "新細明體";
+}
+a {
+    color: #2E64FE;
+}
+div, p {
+    box-sizing: border-box;
+}
+#header {
+    width: 100%;
+    background-color: #eee;
+    text-align: right;
+}
+#header span {
+    font-weight: bold;
+    color: orange;
+}
+#header ul {
+    padding: 10px 15px;
+}
+#header li {
+    display: inline-block;
+    margin-right: 10px;
+}
+#header li > a:hover {
+    text-decoration: underline;
+}
+#signin {
+}
+#signin .wrapper {
+    margin: 0 auto;
+    background-color: #ccc;
+    box-shadow: 10px 10px 5px #888888;
+    width: 500px;
+    height: 300px;
+    margin-top: 100px;
+    padding: 30px 15px 15px 15px;
+    position: relative;
+}
+#signin .btns {
+    margin-top: 10%;
+    position: relative;
+    text-align: center;
+}
+.help-block {
+    font-size: 14px;
+}
+.form-hor .form-group:before, .form-hor .form-group:after {
+    display: block;
+    content:" ";
+}
+.form-hor {
+    box-sizing: border-box;
+}
+.form-group {
+    margin-bottom: 15px;
+    font-size: 20px;
+    display: block;
+}
+.form-hor, .form-group:after {
+    clear: both;
+}
+.form-group.has-error {
+    color: #c00;
+    border-color: #c00;
+}
+
+
+
+.form-group label {
+    display: inline-block;
+    font-weight: bold;
+    width: 30%;
+    float: left;
+    text-align: right;
+    line-height: 30px;
+}
+.form-group .input {
+    float: left;
+    margin-left: 10px;
+    width: 65%;
+}
+.form-control {
+    display: block;
+    height: 34px;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 4px 12px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.has-error .form-control {
+	border-color: inherit;
+}
+ 
+.btn {
+    display: inline-block;
+    font-size: 16px;
+    border: 1px solid #000;
+    padding: 3px 15px;
+    color: #000;
+    background-color: #fff
+}
+.btn:active {
+    position: relative;
+    top: -2px;
+    right: 2px;
+}
+.btn.submit {
+    background-color: #494;
+    color: #fff;
+}
+.btn.submit:hover {
+    background-color: #4c4;
+    color: #fff;
+}
+#footer {
+    background-color: #aaa;
+    text-align: center;
+    position: relative;
+    height: 30px;
+    bottom: -30px;
+    line-height: 30px;
+    margin-top: 300px;
+}

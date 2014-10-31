@@ -1,0 +1,40 @@
+<% layout('./template/default') -%>
+
+
+	<div class="container">
+	    <form id="form" class="form-register form-horizontal" action="user/register" method="post">
+
+			<div class="form-group">
+				<label for="account" class="col-sm-3 control-label">account:</label>
+				<div class="col-sm-9">
+					<input class="form-control" type="text" name="account" value="">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="nickname" class="col-sm-3 control-label">nickname:</label>
+				<div class="col-sm-9">
+					<input class="form-control" type="text" name="nickname" value="">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="password" class="col-sm-3 control-label">password:</label>
+				<div class="col-sm-9">
+					<input id="password" class="form-control" type="password" name="password" value="">
+				</div>
+			</div>
+	
+			<div class="form-group">
+				<label for="repassword" class="col-sm-3 control-label">repassword:</label>
+				<div class="col-sm-9">
+					<input class="form-control" type="password" name="repassword" value="">
+				</div>
+			</div>
+
+
+			<div class="btns">
+				<a id="btnRegister" href="#"  class="btn  btn-primary" type="submit">register</a>
+			</div>
+	    </form>
+    </div> 

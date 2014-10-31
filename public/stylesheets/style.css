@@ -1,12 +1,12 @@
-body {
+html, body {
     font: 14px"蘋果儷中黑", "微軟正黑體", Verdana, Helvetica, Arial, sans-serif, "新細明體";
-}
-a {
-    color: #2E64FE;
+    height: 100%;
+    background-color: #eee;
 }
 div, p {
     box-sizing: border-box;
 }
+/*
 #header {
     width: 100%;
     background-color: #eee;
@@ -15,6 +15,7 @@ div, p {
 #header span {
     font-weight: bold;
     color: orange;
+    padding-right: 25px;
 }
 #header ul {
     padding: 10px 15px;
@@ -27,6 +28,7 @@ div, p {
     text-decoration: underline;
 }
 #signin {
+    background-color: pink;
 }
 #signin .wrapper {
     margin: 0 auto;
@@ -34,15 +36,49 @@ div, p {
     box-shadow: 10px 10px 5px #888888;
     width: 500px;
     height: 300px;
-    margin-top: 100px;
     padding: 30px 15px 15px 15px;
     position: relative;
 }
+
+#signin .checkbox {
+    margin-left: 150px;
+}
+
 #signin .btns {
     margin-top: 10%;
     position: relative;
     text-align: center;
 }
+
+.full-wrapper {
+    min-height: 100%;
+    padding-top: 35px;
+}
+
+#register {
+    background-color: #4aa;
+}
+
+#register .wrapper { 
+   
+}
+
+#register .form-group label {
+    width: 15%;
+}
+
+
+#register .form-group .form-control {
+    width: 50%;
+}
+
+#register .btns {
+    text-align: center;
+    position: relative;
+    top: 80px;
+}
+
+
 .help-block {
     font-size: 14px;
 }
@@ -93,7 +129,7 @@ div, p {
 }
 
 .has-error .form-control {
-	border-color: inherit;
+    border-color: inherit;
 }
  
 .btn {
@@ -122,7 +158,121 @@ div, p {
     text-align: center;
     position: relative;
     height: 30px;
-    bottom: -30px;
     line-height: 30px;
-    margin-top: 300px;
+}
+
+.alert {
+    font-size: 18px;
+    height: 50px;
+    padding: 0px 10px;
+    line-height: 50px;
+}
+
+.alert.error {
+    background-color: #f2dede;
+    color: #a94442;
+    border-color: #ebccd1;
+}
+
+.alert.success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}*/
+
+.navbar {
+    margin-bottom: 0px;
+}
+
+.navbar-nav > li > .welcome {
+    display: block;
+    padding: 15px 0px;
+    line-height: 20px;
+    margin-right: 30px;
+}
+
+
+.navbar-nav > li > .welcome .nickname {
+    font-weight: bold;
+    margin-right: 10px;
+} 
+
+.container {
+    margin-top: 20px;
+    margin-bottom: -40px;
+}
+
+.container .lead-content {
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+.container .lead-content > p {
+    margin-bottom: 20px;
+}
+
+.form-horizontal {
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-horizontal .btns {
+    text-align: right;
+}
+
+.form-signin {
+    max-width: 330px;
+}
+
+.form-signin, .form-signin .checkbox {
+    margin-bottom: 10px;
+}
+
+.form-register {
+    max-width: 660px;
+}
+
+
+.footer {
+    background-color: #555;
+    position: fixed;
+    width: 100%;
+    height: 40px;
+    bottom: 0;
+    line-height: 40px;
+    color: #fff;
+    text-align: center
+}
+.footer p {
+    margin: 0px 20px;
+}
+
+
+
+
+/*
+.form-signin .checkbox {
+    font-weight: normal;
+}
+.form-signin .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }

@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>
+      <% if (typeof(title) !== "undefined") { %>
+        <%= title %>
+      <% } else { %>
+        mywebsite
+      <% } %>
+    </title>
 
     <!-- 共用的css放在這 -->
     <% include ../partials/base/globalcss %>
@@ -16,7 +22,6 @@
 		<% include ../partials/header %>
 		
     <%-body -%>
-
 
     <!-- 共用的js放在這 -->
     <% include ../partials/base/globaljs %>

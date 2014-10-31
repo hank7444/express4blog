@@ -1,30 +1,33 @@
 <% layout('./template/default') -%>
 
-	<div id="signin">
-		<div class="wrapper">
-			<div>
-
-				<form id="form" class="form-hor" action="user/signin" method="post">
-					<div class="form-group">
-						<label>account:</label>
-						<div class="input">
-							<input class="form-control" type="text" name="account" value="">
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<label>password:</label>
-						<div class="input">
-							<input class="form-control" type="password" name="password" value="">
-						</div>
-					</div>
-
-					<div class="btns">
-						<a id="btnSignin" href="#" class="btn submit">signin</a>
-					</div>
-				</form>
-
-
-			</div>
-		</div>
+	<% if (error) { %>
+	<div class="alert alert-danger" role="alert">
+		<%=error%>
 	</div>
+	<% } %>
+
+  	<div class="container">
+	    <form id="form" class="form-signin form-horizontal" role="form" action="/users/signin" method="post">
+
+			<div class="form-group">
+				<label for="account" class="col-sm-3 control-label">account:</label>
+				<div class="col-sm-9">
+					<input class="form-control" type="text" name="account" value="">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="password" class="col-sm-3 control-label">password:</label>
+				<div class="col-sm-9">
+					<input class="form-control" type="password" name="password" value="">
+				</div>
+			</div>
+
+	        <div class="checkbox">
+	          <label>
+	            <input type="checkbox" name="isShortLogin" value="10000"> Remember me 10 secs(勾選10秒後登入失效, 測試cookie-session用)
+	          </label>
+	        </div>
+	        <button class="btn btn-lg btn-primary btn-block" type="submit">sign in</button>
+	    </form>
+    </div> 

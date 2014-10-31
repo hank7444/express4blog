@@ -26,7 +26,8 @@
             rules: {
                 'account': {
                     required: true,
-                    maxlength: 30
+                    maxlength: 30,
+                    email: true
                 },
                 'password': {
                     required: true
@@ -47,11 +48,12 @@
             }
         });
 
+        // 這邊用傳統post的方式
         $btnSignin.on('click', function(e) {
         	e.preventDefault();
 
         	if ($form.valid()) {
-        		
+        		$form[0].submit();
         	}
         });
 

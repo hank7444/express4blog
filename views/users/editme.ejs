@@ -1,0 +1,53 @@
+<% layout('./template/default') -%>
+
+
+	<div class="container">
+	    <form id="form" class="form-register form-horizontal" action="user/register" method="post">
+
+
+          <div class="col-sm-8">
+				<div class="form-group">
+					<label for="account" class="col-sm-3 control-label">account:</label>
+					<div class="col-sm-9">
+						<input class="form-control" type="text" name="account" value="<%=user.account%>">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="nickname" class="col-sm-3 control-label">nickname:</label>
+					<div class="col-sm-9">
+						<input class="form-control" type="text" name="nickname" value="<%=user.nickname%>">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="password" class="col-sm-3 control-label">newpassword:</label>
+					<div class="col-sm-9">
+						<input id="newpassword" class="form-control" type="password" name="newpassword" value="">
+					</div>
+				</div>
+		
+				<div class="form-group">
+					<label for="repassword" class="col-sm-3 control-label">repassword:</label>
+					<div class="col-sm-9">
+						<input class="form-control" type="password" name="repassword" value="">
+					</div>
+				</div>
+
+				<div class="btns">
+					<a id="btnEdit" href="#"  class="btn  btn-primary" type="submit">edit</a>
+				</div>
+			</div>
+
+			<div id="img" class="col-sm-4">
+				<input id="tmpFiles" name="tmpFiles"  type="hidden" value="c7ee4872f164ad76c78d7113e00a761a"/>
+                <img class="img-thumbnail photo" width="100" src="/images/default_150.png">
+                <br/><br>
+                <input name="file" style="" type="file" accept="image/jpeg, image/png"/>
+                <a name="btnUpload" class="btn btn-xs btn-success" href="javascript:void(0);">upload</a>
+                <br/><br>
+                <div class="ProgressBar" style="height:10px;"></div>
+                <div class="UploadStatus"></div>
+          </div>
+	    </form>
+    </div> 

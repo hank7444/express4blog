@@ -89,7 +89,6 @@ router.route('/editme')
                 modelUser.getUserById(uid, res, next, callback);
             },
             function(user, callback) {
-
                 callback(null, user);
             }
         ], function (err, user) { // done就會跑來這

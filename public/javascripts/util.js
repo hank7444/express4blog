@@ -30,6 +30,7 @@ var util = {
         $btnUpload = $div.find('a[name=btnUpload]');
         $input = $div.find('input[name="file"]');
         $photo = $div.find('.photo');
+        $originImgPath = $div.find('input[name="originImgPath"]');
 
         // prograssBar
         $progressbar.progressbar({
@@ -103,8 +104,9 @@ var util = {
 
                 switch (result.status) {
                     case true:
-                        $photo.attr('width', img.size.width)
-                              .attr('height', img.size.height)
+                        $originImgPath.val(result.paths['orig'].path);
+                        $photo//.attr('width', img.size.width)
+                              //.attr('height', img.size.height)
                               .attr('src', img.pathShow);
 
                         $status.html('注意，要儲存成功後，檔案才會更新');

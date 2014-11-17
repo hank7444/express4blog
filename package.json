@@ -23,6 +23,7 @@
     "moment": "*",
     "underscore": "*",
     "image-size": "*",
-    "easyimage": "*"
+    "easyimage": "*",
+    "fs-extra": "*"
   }
 }

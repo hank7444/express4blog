@@ -1,7 +1,8 @@
 var md5 = require('MD5');
 var mongoose = require('./proxy');
 var async = require('async');
-var moment = require('../proxy_modules/moment');
+var moment = require('../proxy/moment');
+var imgTool = require('../tool/img');
 
 
 // 建立user schema
@@ -9,6 +10,7 @@ var userSchema = mongoose.Schema({
     account: String,
     nickname: String,
     password: String,
+    img: String,
     createTime: {
         type: Date,
         default: Date.now // 設定初始值
@@ -22,6 +24,17 @@ var userSchema = mongoose.Schema({
         default: ''
     }
 });
+
+var imgSize = [{
+    name: 's',
+    size: '150x150'
+}, {
+    name: 'm',
+    size: '300x300'
+}, {
+    name: 'l',
+    size: '450x450'
+}];
 
 
 // 建立資料model
@@ -189,7 +202,7 @@ var exports = {
         Users.findOne({
             _id: uid
         })
-            .select('account nickname')
+            .select('account nickname img')
             .exec(function(err, user) {
 
                 if (err) {
@@ -206,42 +219,66 @@ var exports = {
     },
     updateUserById: function(uid, req, res) {
 
-    	var updateData = {
-    		nickname: req.body.nickname,
-    		updateTime: new Date()
-    	};
 
-    	if (req.body.newpassword) {
-    		updateData.password = md5(req.body.newpassword);
-    	}
+        async.waterfall([
 
-        Users.update({
-        	_id: uid    
- 		}, updateData)
-            .limit(1)
-            .exec(function(err) {
+            function(callback) {
 
-            	console.log(err);
+                var options = {
+                    imgSize: imgSize,
+                    oldFilePath: req.body.originImgPath,
+                    newFileName: uid,
+                    newFolderPath: 'public/user/' + uid,
+                    isClearNewFolder: true
+                };
+                imgTool.copyFromTmp(options, function(imgPath) {
+                    callback(null, imgPath);
+                });        
+            }
+        ], function(err, result) { // done就會跑來這
 
-                if (err) {
+            if (req.body.newpassword) {
+                updateData.password = md5(req.body.newpassword);
+            }
+
+            var updateData = {
+                nickname: req.body.nickname,
+                updateTime: new Date()
+            };
+
+            if (result) {
+                var showPath = result.replace(/^public/, '');
+                updateData.img = showPath;
+            }
+
+            Users.update({
+                _id: uid    
+            }, updateData)
+                .limit(1)
+                .exec(function(err) {
+
+                    console.log(err);
+
+                    if (err) {
+                        status = {
+                            status: 'failed',
+                            msg: '儲存發生錯誤，請再試一次'
+                        };
+                        res.status(200).json(status);
+                        res.end();
+                        return false;
+                    }
                     status = {
-                        status: 'failed',
-                        msg: '儲存發生錯誤，請再試一次'
+                        nickname: updateData.nickname,
+                        status: 'ok',
+                        msg: '儲存成功'
                     };
+
+                    req.session.user.nickname = req.body.nickname;
                     res.status(200).json(status);
                     res.end();
-                    return false;
-                }
-                status = {
-                	nickname: updateData.nickname,
-                    status: 'ok',
-                    msg: '儲存成功'
-                };
-
-                req.session.user.nickname = req.body.nickname;
-                res.status(200).json(status);
-                res.end();
-            });
+                });
+        });
     }
 };
 module.exports = exports;

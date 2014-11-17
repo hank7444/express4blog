@@ -180,6 +180,11 @@ div, p {
     border-color: #d6e9c6;
 }*/
 
+.fake-hidden {
+    position: absolute;
+    left: -9999px;
+}
+
 .navbar {
     margin-bottom: 0px;
 }

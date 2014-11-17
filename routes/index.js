@@ -23,7 +23,9 @@ router.get('/', function(req, res) {
 });
 
 router.get('/about', function(req, res) {
-    res.send('111');
+    res.render('about', {
+        title: 'about'
+    });
     res.end();
 });
 

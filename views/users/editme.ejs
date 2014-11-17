@@ -40,10 +40,15 @@
 			</div>
 
 			<div id="img" class="col-sm-4">
-				<input id="tmpFiles" name="tmpFiles"  type="hidden" value="c7ee4872f164ad76c78d7113e00a761a"/>
-                <img class="img-thumbnail photo" width="100" src="/images/default_150.png">
+				<input type="hidden" name="originImgPath" value="">
+				<% if (user.img) { %>
+					<img class="img-thumbnail photo" width="200" src="<%=user.img%>">
+				<% } else { %>
+					<img class="img-thumbnail photo" width="200" src="/images/default_150.png">
+				<% } %>
+                
                 <br/><br>
-                <input name="file" style="" type="file" accept="image/jpeg, image/png"/>
+                <input name="file" class="fake-hidden" style="" type="file" accept="image/jpeg, image/png"/>
                 <a name="btnUpload" class="btn btn-xs btn-success" href="javascript:void(0);">upload</a>
                 <br/><br>
                 <div class="ProgressBar" style="height:10px;"></div>

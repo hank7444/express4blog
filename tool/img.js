@@ -7,8 +7,6 @@ var easyimg = require('easyimage');
 var img = {
     copyFromTmp: function(option, callback) {
 
-    	imgSize, oldFilePath, newFileName, newFolderPath
-
     	var imgSize = option.imgSize;
     	var oldFilePath = option.oldFilePath;
     	var newFileName = option.newFileName;
@@ -74,6 +72,19 @@ var img = {
                 }
             });
         });
+    },
+    imgPathAddTag: function(imgPath, tagName) {
+
+        if (!imgPath) {
+            return '';
+        }
+
+        var lastIndex = imgPath.lastIndexOf('.');
+        var substr = imgPath.substr(0, lastIndex);
+        var begin = imgPath.length - lastIndex;
+        var ext = imgPath.substr(-begin, begin);
+
+        return substr + '_' + tagName + ext;
     }
 };
 module.exports = img;

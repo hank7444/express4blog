@@ -11,6 +11,7 @@ var _ = require('underscore');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var blogs = require('./routes/blogs');
 var engine = require('ejs-mate');
 
 var app = express();
@@ -32,7 +33,7 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(flash()); // 設定讓redirect可以互傳資料用
 
-// 設定session儲存在redis裡面s
+// 設定session儲存在redis裡面
 app.use(session({
     secret: 'blogs',
     store: new RedisStore({
@@ -57,22 +58,32 @@ app.use(function(req, res, next) {
     }
     res.locals.session = req.session;
 
+    var url = req.url;
+
     var pages = {
-        nonsigined: ['/', '/users/signin', '/users/register', '/about'], // 不需登入頁面
+        nonsigined: ['/', '/users/signin', '/users/register', '/about', '/blogs'], // 不需登入頁面
         sigined: ['/users/signin', '/users/register'] // 如果登入需導向首頁的頁面
     };
 
+    // 這邊是為了將/blogs/1, /blogs/2 ..等url避開, 避免登入才寫的, 
+    // 不過這樣寫不好，還在想有沒有更好的做法..
+    if (url.indexOf('/blogs') !== false) {
+        url = '/blogs';
+    }
+
+    console.log('##########################');
+    console.log(req.url);
 
     if (req.method === 'GET') {
 
         // 如果沒登入, 進入到需要登入的頁面就自動重新導向回signin
-        if (!req.session.signed && !_.contains(pages.nonsigined, req.url)) {
+        if (!req.session.signed && !_.contains(pages.nonsigined, url)) {
             res.redirect('/users/signin');
             res.end();
             return false;
         }
         // 如果已經登入，到某些特定頁面將直接導回首頁
-        else if (req.session.signed && _.contains(pages.sigined, req.url)) {
+        else if (req.session.signed && _.contains(pages.sigined, url)) {
             res.redirect('/');
             res.end();
             return false;
@@ -84,6 +95,7 @@ app.use(function(req, res, next) {
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/blogs', blogs);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

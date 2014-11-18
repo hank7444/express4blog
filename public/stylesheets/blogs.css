@@ -1,0 +1,40 @@
+.container {
+
+}
+
+.blog p {
+	margin: 0px;
+}
+
+.blog .title {
+	float: left;
+	font-size: 30px;
+}
+
+.blog .info {
+	text-align: right;
+	position: relative;
+	top: 5px;
+}
+
+.blog .info span {
+	position: relative;
+	bottom: 1px;
+}
+
+.blog .content {
+	background-color: #fff;
+	border: 1px solid #ccc;
+	padding: 10px;
+	clear: both;
+}
+
+.blog .tool {
+	text-align: right;
+}
+
+.icon {
+	height: 30px;
+	width: 30px;
+	vertical-align: baseline;
+}

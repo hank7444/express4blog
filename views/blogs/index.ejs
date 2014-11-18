@@ -1,0 +1,55 @@
+
+	<% layout('./template/default') -%>
+
+	<div class="container">
+
+
+		<% if (blogs.length === 0) { %>
+			<h1>沒資料喔!</h1>
+		<% } else {%>
+			<% blogs.forEach(function(blog, index) { %>
+			<div class="well blog">
+				<div class="header">
+					<p class="title"><%=blog.title%></p>
+					<p class="info">
+
+						<% if (blog.author.img) { %>
+							<img class="icon" src="<%=blog.author.img%>" alt="<%=blog.author.nickname%>">
+						<% } else { %>
+							<img class="icon" src="/images/default_member.png" alt="<%=blog.author.nickname%>">
+						<% } %>
+						<span>
+							<%=blog.author.nickname%>, <%=blog.updateTime%>
+						</span>
+					</p>
+				</div>
+				<div class="content">
+					<%=blog.body%>
+				</div>
+				<div class="tool">
+					<a href="/blogs/show/<%=blog._id%>">more</a>
+				</div>
+				
+			</div>
+			<% }) %>
+		<% } %>
+
+		<ul class="pagination">
+			<li><a href="/blogs/<%=pager.begin%>"><span aria-hidden="true"><<</span><span class="sr-only">Previous</span></a></li>
+
+			<% if (pager.prev != '') { %>
+		    <li><a href="/blogs/<%=pager.prev%>"><span aria-hidden="true"><</span><span class="sr-only">Previous</span></a></li>
+		    <% } %>
+
+
+		    <% for(var i = 1; i <= pager.total; i++) { %>
+		    	
+		    	<li class="<% if (i === pager.now) { %> active <% }%>"><a href="/blogs/<%=i%>"><%=i%></a></li>
+			<% } %>
+
+			<% if (pager.next != '') { %>
+		    <li><a href="/blogs/<%=pager.next%>"><span aria-hidden="true">></span><span class="sr-only">Next</span></a></li>
+		    <% } %>
+		    <li><a href="/blogs/<%=pager.end%>"><span aria-hidden="true">>></span><span class="sr-only">Next</span></a></li>
+		</ul>
+	</div>

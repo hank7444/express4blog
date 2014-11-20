@@ -116,7 +116,7 @@ var exports = {
                 Users.findOne()
                     .where('account').equals(account)
                     .where('password').equals(password)
-                    .select('_id nickname lastLoginTime')
+                    .select('_id nickname img lastLoginTime')
                     .exec(function(err, user) {
 
                         if (err) {
@@ -175,6 +175,7 @@ var exports = {
                 req.session.user = {
                     _id: user._id,
                     nickname: user.nickname,
+                    img: user.img,
                     lastLoginTime: moment(user.lastLoginTIme).fromNow() || '無'
                 };
 

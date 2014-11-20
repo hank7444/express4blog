@@ -16,6 +16,7 @@
     "ejs": "*",
     "mongoose": "*",
     "express-session": "*",
+    "connect-flash": "*",
     "connect-redis": "*",
     "ejs-mate": "*",
     "MD5": "*",

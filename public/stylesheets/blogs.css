@@ -38,3 +38,40 @@
 	width: 30px;
 	vertical-align: baseline;
 }
+
+.comment {
+    margin-top: 10px;
+    background-image: none;
+    background-color: #fff;
+}
+
+.well.blog.comment h2, .well.blog.comment h3 {
+    text-align: center;
+}
+
+.well.blog.comment .media {
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+.well.blog.comment .media-body {
+	display: block;
+}
+
+.well.blog.comment .title {
+	font-size: 18px;
+	font-weight: bold;
+	float: left;
+}
+
+.well.blog.comment .title img {
+	margin-right: 5px;
+}
+
+.well.blog.comment .info {
+	float: right;
+}
+
+.well.blog.comment .body {
+	clear: both;
+}

@@ -5,8 +5,9 @@
 
     $(function() {
 
-        var $btnRegister = $('#btnRegister');
+        var $btnSubmit = $('#btnSubmit');
         var $form = $('#form');
+        
 
         // 驗證錯誤訊息
         $.validator.messages = {
@@ -22,27 +23,14 @@
             errorClass: 'help-block has-error',
             success: 'valid',
             rules: {
-                'account': {
+                'title': {
                     required: true,
-                    maxlength: 30,
-                    email: true
                 },
-                'nickname': {
+                'comment': {
                     required: true,
-                    maxlength: 30
-                },
-                'password': {
-                    required: true
-                },
-                'repassword': {
-                    required: true,
-                    equalTo: '#password'
                 }
             },
             messages: {
-                'repassword': {
-                    equalTo: '密碼確認需跟密碼欄位一致'
-                }
 
             },
             errorPlacement: function(error, element) {
@@ -56,8 +44,30 @@
             }
         });
 
+
+        var addComment = (function() {
+
+            var $commentsH2 = $('#comments > h2');
+            var $commentTemplate = $('#commentTemplate');
+
+            return function(commentData) {
+
+                // 動態增加評論
+                var $comment = $commentTemplate.clone();
+                var img = commentData.author.img || '/images/default_member.png';
+
+                $comment.find('.info').html(commentData.author.nickname + ', ' + commentData.createTime);
+                $comment.find('.body').html(commentData.body);
+                $comment.find('.title').find('span').html(commentData.title)
+                                       .end().find('img').attr('src', img)
+                                                         .attr('alt', commentData.author.nickname);
+                $commentsH2.after($comment);
+                $comment.fadeIn();
+            };
+        })();
+
         // 這邊用ajax的方式
-        $btnRegister.on('click', function(e) {
+        $btnSubmit.on('click', function(e) {
         	e.preventDefault();
 
         	if ($form.valid()) {
@@ -73,18 +83,22 @@
                     endCallback: function() {
                         //console.log('fadeIn End');
 
-                        $.post('/users/register', params, null, 'json')
+                        $.post('/blogs/comment', params, null, 'json')
                          .done(function(data) {
                             
-                            console.log(data);
-
                             if (data.status == 'failed') {
                                 $.notify(data.msg, "error");
                                 return false;
+                            }
+                            else if (data.status == 'login') {
+                                bootbox.alert(data.msg, function() {
+                                    location.href = '/users/signin';
+                                });
+                                return false;
                             } 
-                            $.notify("註冊成功！", "success");
-                            alert('註冊成功！ 請點"確定"回到登入頁!');
-                            location.href = '/users/signin';
+                            $.notify("新增評論成功！", "success");
+
+                            addComment(data.show);
                          })
                          .fail(function(err) {
                             $.notify(err.status + ' ' + err.statusText, "error");

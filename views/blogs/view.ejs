@@ -1,0 +1,116 @@
+
+	<% layout('./template/default') -%>
+
+	<div class="container">
+
+		<div class="well blog">
+			<div class="header">
+				<p class="title"><%=blog.title%></p>
+				<p class="info">
+
+					<% if (blog.author.img) { %>
+						<img class="icon" src="<%=blog.author.img%>" alt="<%=blog.author.nickname%>">
+					<% } else { %>
+						<img class="icon" src="/images/default_member.png" alt="<%=blog.author.nickname%>">
+					<% } %>
+					<span>
+						<%=blog.author.nickname%>, <%=blog.updateTime%>
+					</span>
+				</p>
+			</div>
+			<div class="content">
+				<%=blog.body%>
+			</div>
+
+
+
+	
+
+			<!-- add comment -->
+			<% if (user) { %> 
+			<div class="well blog comment">
+				<h2>add comment</h2>
+				<form id='form' class="form-horizontal" role="form">
+					
+					<input name="blogId" type="hidden" value="<%=blog._id%>">
+
+					<div class="form-group">
+						<label for="title" class="col-sm-2 control-label">title:</label>
+						<div class="col-sm-10">
+							<input id="title" name="title" class="form-control" placeholder=""></textarea>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="comment" class="col-sm-2 control-label">comment:</label>
+						<div class="col-sm-10">
+							<textarea id="comment" name="comment" class="form-control" placeholder=""></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<a id="btnSubmit" href="#" class="btn btn-lg btn-success">submit</a>
+						</div>
+					</div>
+				</form>
+			</div>
+			<% } %>
+
+
+			<!-- comments -->
+			<div id="comments" class="well blog comment">
+				<h2>comments</h2>
+
+				<% if (blog.comments.length === 0) { %>
+					<h3>目前沒有任何評論喔！</h3>
+				<% } else { %>
+				
+					<% blog.comments.forEach(function(comment, index) { %>
+
+						<div class="media">
+							<img class="media-left" src="" alt="">
+							<div class="media-body">
+							    <h4 class="media-heading title">
+
+							    <% if (comment.author.img) { %>
+									<img class="" src="<%=comment.author.img%>" width="30" height="30" alt="<%=comment.author.name%>">
+								<% } else { %>
+									<img class="icon" src="/images/default_member.png" alt="<%=comment.author.nickname%>">
+								<% } %>
+							    	
+
+
+							    	<span><%=comment.title%></span>
+							    </h4>
+							    <p class="info">
+						    		<%=comment.author.nickname%>, <%=comment.createTime%>
+						    	</p>
+						    	<p class="body">
+							    	<%=comment.body%>
+							    </p>
+							</div>
+						</div>
+				
+					<% }); %>
+				<% } %>
+			</div>
+		</div>
+
+
+	</div>
+
+
+
+	<div id="commentTemplate" class="media" style="display:none;">
+		<img class="media-left" src="" alt="">
+		<div class="media-body">
+		    <h4 class="media-heading title">
+		    	<img class="" src="" width="30" height="30" alt="">
+		    	<span></span>
+		    </h4>
+		    <p class="info">
+	    	</p>
+	    	<p class="body">
+		    </p>
+		</div>
+	</div>
